@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CenterStoreContainer" CdmEntityContainer="CenterContainer">
+    <EntitySetMapping Name="EgitimlerSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Center.Egitimler)">
+        <MappingFragment StoreEntitySet="EgitimlerSet">
+          <ScalarProperty Name="EgitimNo" ColumnName="EgitimNo" />
+          <ScalarProperty Name="EgitimAdi" ColumnName="EgitimAdi" />
+          <ScalarProperty Name="EgitimSaati" ColumnName="EgitimSaati" />
+          <ScalarProperty Name="EgitimTuru" ColumnName="EgitimTuru" />
+          <ScalarProperty Name="EgitimUcreti" ColumnName="EgitimUcreti" />
+          <ScalarProperty Name="EgitimGunu" ColumnName="EgitimGunu" />
+          <ScalarProperty Name="SubeNo" ColumnName="SubeNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EgitmenlerSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Center.Egitmenler)">
+        <MappingFragment StoreEntitySet="EgitmenlerSet">
+          <ScalarProperty Name="EgitmenNo" ColumnName="EgitmenNo" />
+          <ScalarProperty Name="EgitmenAdi" ColumnName="EgitmenAdi" />
+          <ScalarProperty Name="EgitmenSifre" ColumnName="EgitmenSifre" />
+          <ScalarProperty Name="EgitmenMail" ColumnName="EgitmenMail" />
+          <ScalarProperty Name="EgitmenTelefon" ColumnName="EgitmenTelefon" />
+          <ScalarProperty Name="EgitmenAlani" ColumnName="EgitmenAlani" />
+          <ScalarProperty Name="SubeNo" ColumnName="SubeNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubelerSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Center.Subeler)">
+        <MappingFragment StoreEntitySet="SubelerSet">
+          <ScalarProperty Name="SubeNo" ColumnName="SubeNo" />
+          <ScalarProperty Name="SubeAdi" ColumnName="SubeAdi" />
+          <ScalarProperty Name="SubeAdresi" ColumnName="SubeAdresi" />
+          <ScalarProperty Name="EgitmenSayisi" ColumnName="EgitmenSayisi" />
+          <ScalarProperty Name="ProgramSayisi" ColumnName="ProgramSayisi" />
+          <ScalarProperty Name="OgrenciNo" ColumnName="OgrenciNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OgrencilerSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Center.Ogrenciler)">
+        <MappingFragment StoreEntitySet="OgrencilerSet">
+          <ScalarProperty Name="OgrenciNo" ColumnName="OgrenciNo" />
+          <ScalarProperty Name="OgrenciAdSoyad" ColumnName="OgrenciAdSoyad" />
+          <ScalarProperty Name="OgrenciSifre" ColumnName="OgrenciSifre" />
+          <ScalarProperty Name="OgrenciMail" ColumnName="OgrenciMail" />
+          <ScalarProperty Name="OgrenciTelefon" ColumnName="OgrenciTelefon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KullanicilarSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Center.Kullanicilar)">
+        <MappingFragment StoreEntitySet="KullanicilarSet">
+          <ScalarProperty Name="KullaniciNo" ColumnName="KullaniciNo" />
+          <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+          <ScalarProperty Name="KullaniciSifre" ColumnName="KullaniciSifre" />
+          <ScalarProperty Name="KullaniciMail" ColumnName="KullaniciMail" />
+          <ScalarProperty Name="KullaniciTelefon" ColumnName="KullaniciTelefon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

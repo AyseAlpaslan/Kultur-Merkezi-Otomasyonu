@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Center.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="CenterStoreContainer">
+    <EntitySet Name="EgitimlerSet" EntityType="Center.Store.EgitimlerSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EgitmenlerSet" EntityType="Center.Store.EgitmenlerSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SubelerSet" EntityType="Center.Store.SubelerSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OgrencilerSet" EntityType="Center.Store.OgrencilerSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KullanicilarSet" EntityType="Center.Store.KullanicilarSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="OgrencilerSubeler" Association="Center.Store.OgrencilerSubeler">
+      <End Role="Ogrenciler" EntitySet="OgrencilerSet" />
+      <End Role="Subeler" EntitySet="SubelerSet" />
+    </AssociationSet>
+    <AssociationSet Name="SubelerEgitimler" Association="Center.Store.SubelerEgitimler">
+      <End Role="Subeler" EntitySet="SubelerSet" />
+      <End Role="Egitimler" EntitySet="EgitimlerSet" />
+    </AssociationSet>
+    <AssociationSet Name="SubelerEgitmenler" Association="Center.Store.SubelerEgitmenler">
+      <End Role="Subeler" EntitySet="SubelerSet" />
+      <End Role="Egitmenler" EntitySet="EgitmenlerSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="EgitimlerSet">
+    <Key>
+      <PropertyRef Name="EgitimNo" />
+    </Key>
+    <Property Name="EgitimNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EgitimAdi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EgitimSaati" Type="int" Nullable="false" />
+    <Property Name="EgitimTuru" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EgitimUcreti" Type="decimal" Nullable="false" />
+    <Property Name="EgitimGunu" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SubeNo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EgitmenlerSet">
+    <Key>
+      <PropertyRef Name="EgitmenNo" />
+    </Key>
+    <Property Name="EgitmenNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EgitmenAdi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EgitmenSifre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EgitmenMail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EgitmenTelefon" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EgitmenAlani" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SubeNo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubelerSet">
+    <Key>
+      <PropertyRef Name="SubeNo" />
+    </Key>
+    <Property Name="SubeNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubeAdi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SubeAdresi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EgitmenSayisi" Type="int" Nullable="false" />
+    <Property Name="ProgramSayisi" Type="int" Nullable="false" />
+    <Property Name="OgrenciNo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OgrencilerSet">
+    <Key>
+      <PropertyRef Name="OgrenciNo" />
+    </Key>
+    <Property Name="OgrenciNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OgrenciAdSoyad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="OgrenciSifre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="OgrenciMail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="OgrenciTelefon" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KullanicilarSet">
+    <Key>
+      <PropertyRef Name="KullaniciNo" />
+    </Key>
+    <Property Name="KullaniciNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KullaniciAdi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="KullaniciSifre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="KullaniciMail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="KullaniciTelefon" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="OgrencilerSubeler">
+    <End Role="Ogrenciler" Type="Center.Store.OgrencilerSet" Multiplicity="1" />
+    <End Role="Subeler" Type="Center.Store.SubelerSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ogrenciler">
+        <PropertyRef Name="OgrenciNo" />
+      </Principal>
+      <Dependent Role="Subeler">
+        <PropertyRef Name="OgrenciNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SubelerEgitimler">
+    <End Role="Subeler" Type="Center.Store.SubelerSet" Multiplicity="1" />
+    <End Role="Egitimler" Type="Center.Store.EgitimlerSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subeler">
+        <PropertyRef Name="SubeNo" />
+      </Principal>
+      <Dependent Role="Egitimler">
+        <PropertyRef Name="SubeNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SubelerEgitmenler">
+    <End Role="Subeler" Type="Center.Store.SubelerSet" Multiplicity="1" />
+    <End Role="Egitmenler" Type="Center.Store.EgitmenlerSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subeler">
+        <PropertyRef Name="SubeNo" />
+      </Principal>
+      <Dependent Role="Egitmenler">
+        <PropertyRef Name="SubeNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Center" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="CenterContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EgitimlerSet" EntityType="Center.Egitimler" />
+          <EntitySet Name="EgitmenlerSet" EntityType="Center.Egitmenler" />
+          <EntitySet Name="SubelerSet" EntityType="Center.Subeler" />
+          <EntitySet Name="OgrencilerSet" EntityType="Center.Ogrenciler" />
+          <AssociationSet Name="OgrencilerSubeler" Association="Center.OgrencilerSubeler">
+            <End EntitySet="OgrencilerSet" Role="Ogrenciler" />
+            <End EntitySet="SubelerSet" Role="Subeler" />
+          </AssociationSet>
+          <AssociationSet Name="SubelerEgitimler" Association="Center.SubelerEgitimler">
+            <End EntitySet="SubelerSet" Role="Subeler" />
+            <End EntitySet="EgitimlerSet" Role="Egitimler" />
+          </AssociationSet>
+          <AssociationSet Name="SubelerEgitmenler" Association="Center.SubelerEgitmenler">
+            <End EntitySet="SubelerSet" Role="Subeler" />
+            <End EntitySet="EgitmenlerSet" Role="Egitmenler" />
+          </AssociationSet>
+          <EntitySet Name="KullanicilarSet" EntityType="Center.Kullanicilar" />
+        </EntityContainer>
+        <EntityType Name="Egitimler">
+          <Key>
+            <PropertyRef Name="EgitimNo" />
+          </Key>
+          <Property Name="EgitimNo" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="EgitimAdi" Nullable="false" Type="String" />
+          <Property Name="EgitimSaati" Nullable="false" Type="Int32" />
+          <Property Name="EgitimTuru" Nullable="false" Type="String" />
+          <Property Name="EgitimUcreti" Nullable="false" Type="Decimal" />
+          <Property Name="EgitimGunu" Nullable="false" Type="String" />
+          <NavigationProperty Name="Subeler" Relationship="Center.SubelerEgitimler" FromRole="Egitimler" ToRole="Subeler" />
+          <Property Name="SubeNo" Nullable="false" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Egitmenler">
+          <Key>
+            <PropertyRef Name="EgitmenNo" />
+          </Key>
+          <Property Name="EgitmenNo" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="EgitmenAdi" Nullable="false" Type="String" />
+          <Property Name="EgitmenSifre" Nullable="false" Type="String" />
+          <Property Name="EgitmenMail" Nullable="false" Type="String" />
+          <Property Name="EgitmenTelefon" Nullable="false" Type="String" />
+          <Property Name="EgitmenAlani" Nullable="false" Type="String" />
+          <NavigationProperty Name="Subeler" Relationship="Center.SubelerEgitmenler" FromRole="Egitmenler" ToRole="Subeler" />
+          <Property Name="SubeNo" Nullable="false" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Subeler">
+          <Key>
+            <PropertyRef Name="SubeNo" />
+          </Key>
+          <Property Name="SubeNo" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="SubeAdi" Nullable="false" Type="String" />
+          <Property Name="SubeAdresi" Nullable="false" Type="String" />
+          <Property Name="EgitmenSayisi" Nullable="false" Type="Int32" />
+          <Property Name="ProgramSayisi" Nullable="false" Type="Int32" />
+          <NavigationProperty Name="Ogrenciler" Relationship="Center.OgrencilerSubeler" FromRole="Subeler" ToRole="Ogrenciler" />
+          <Property Name="OgrenciNo" Nullable="false" Type="Int32" />
+          <NavigationProperty Name="Egitimler" Relationship="Center.SubelerEgitimler" FromRole="Subeler" ToRole="Egitimler" />
+          <NavigationProperty Name="Egitmenler" Relationship="Center.SubelerEgitmenler" FromRole="Subeler" ToRole="Egitmenler" />
+        </EntityType>
+        <EntityType Name="Ogrenciler">
+          <Key>
+            <PropertyRef Name="OgrenciNo" />
+          </Key>
+          <Property Name="OgrenciNo" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="OgrenciAdSoyad" Nullable="false" Type="String" />
+          <NavigationProperty Name="Subeler" Relationship="Center.OgrencilerSubeler" FromRole="Ogrenciler" ToRole="Subeler" />
+          <Property Name="OgrenciSifre" Nullable="false" Type="String" />
+          <Property Name="OgrenciMail" Nullable="false" Type="String" />
+          <Property Name="OgrenciTelefon" Nullable="false" Type="String" />
+        </EntityType>
+        <Association Name="OgrencilerSubeler">
+          <End Type="Center.Ogrenciler" Multiplicity="1" Role="Ogrenciler" />
+          <End Type="Center.Subeler" Multiplicity="*" Role="Subeler" />
+          <ReferentialConstraint>
+            <Principal Role="Ogrenciler">
+              <PropertyRef Name="OgrenciNo" />
+            </Principal>
+            <Dependent Role="Subeler">
+              <PropertyRef Name="OgrenciNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SubelerEgitimler">
+          <End Type="Center.Subeler" Multiplicity="1" Role="Subeler" />
+          <End Type="Center.Egitimler" Multiplicity="*" Role="Egitimler" />
+          <ReferentialConstraint>
+            <Principal Role="Subeler">
+              <PropertyRef Name="SubeNo" />
+            </Principal>
+            <Dependent Role="Egitimler">
+              <PropertyRef Name="SubeNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SubelerEgitmenler">
+          <End Type="Center.Subeler" Multiplicity="1" Role="Subeler" />
+          <End Type="Center.Egitmenler" Multiplicity="*" Role="Egitmenler" />
+          <ReferentialConstraint>
+            <Principal Role="Subeler">
+              <PropertyRef Name="SubeNo" />
+            </Principal>
+            <Dependent Role="Egitmenler">
+              <PropertyRef Name="SubeNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Kullanicilar">
+          <Key>
+            <PropertyRef Name="KullaniciNo" />
+          </Key>
+          <Property Name="KullaniciNo" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="KullaniciAdi" Nullable="false" Type="String" />
+          <Property Name="KullaniciSifre" Nullable="false" Type="String" />
+          <Property Name="KullaniciMail" Nullable="false" Type="String" />
+          <Property Name="KullaniciTelefon" Nullable="false" Type="String" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CenterStoreContainer" CdmEntityContainer="CenterContainer">
+    <EntitySetMapping Name="EgitimlerSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Center.Egitimler)">
+        <MappingFragment StoreEntitySet="EgitimlerSet">
+          <ScalarProperty Name="EgitimNo" ColumnName="EgitimNo" />
+          <ScalarProperty Name="EgitimAdi" ColumnName="EgitimAdi" />
+          <ScalarProperty Name="EgitimSaati" ColumnName="EgitimSaati" />
+          <ScalarProperty Name="EgitimTuru" ColumnName="EgitimTuru" />
+          <ScalarProperty Name="EgitimUcreti" ColumnName="EgitimUcreti" />
+          <ScalarProperty Name="EgitimGunu" ColumnName="EgitimGunu" />
+          <ScalarProperty Name="SubeNo" ColumnName="SubeNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EgitmenlerSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Center.Egitmenler)">
+        <MappingFragment StoreEntitySet="EgitmenlerSet">
+          <ScalarProperty Name="EgitmenNo" ColumnName="EgitmenNo" />
+          <ScalarProperty Name="EgitmenAdi" ColumnName="EgitmenAdi" />
+          <ScalarProperty Name="EgitmenSifre" ColumnName="EgitmenSifre" />
+          <ScalarProperty Name="EgitmenMail" ColumnName="EgitmenMail" />
+          <ScalarProperty Name="EgitmenTelefon" ColumnName="EgitmenTelefon" />
+          <ScalarProperty Name="EgitmenAlani" ColumnName="EgitmenAlani" />
+          <ScalarProperty Name="SubeNo" ColumnName="SubeNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubelerSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Center.Subeler)">
+        <MappingFragment StoreEntitySet="SubelerSet">
+          <ScalarProperty Name="SubeNo" ColumnName="SubeNo" />
+          <ScalarProperty Name="SubeAdi" ColumnName="SubeAdi" />
+          <ScalarProperty Name="SubeAdresi" ColumnName="SubeAdresi" />
+          <ScalarProperty Name="EgitmenSayisi" ColumnName="EgitmenSayisi" />
+          <ScalarProperty Name="ProgramSayisi" ColumnName="ProgramSayisi" />
+          <ScalarProperty Name="OgrenciNo" ColumnName="OgrenciNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OgrencilerSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Center.Ogrenciler)">
+        <MappingFragment StoreEntitySet="OgrencilerSet">
+          <ScalarProperty Name="OgrenciNo" ColumnName="OgrenciNo" />
+          <ScalarProperty Name="OgrenciAdSoyad" ColumnName="OgrenciAdSoyad" />
+          <ScalarProperty Name="OgrenciSifre" ColumnName="OgrenciSifre" />
+          <ScalarProperty Name="OgrenciMail" ColumnName="OgrenciMail" />
+          <ScalarProperty Name="OgrenciTelefon" ColumnName="OgrenciTelefon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KullanicilarSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Center.Kullanicilar)">
+        <MappingFragment StoreEntitySet="KullanicilarSet">
+          <ScalarProperty Name="KullaniciNo" ColumnName="KullaniciNo" />
+          <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+          <ScalarProperty Name="KullaniciSifre" ColumnName="KullaniciSifre" />
+          <ScalarProperty Name="KullaniciMail" ColumnName="KullaniciMail" />
+          <ScalarProperty Name="KullaniciTelefon" ColumnName="KullaniciTelefon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

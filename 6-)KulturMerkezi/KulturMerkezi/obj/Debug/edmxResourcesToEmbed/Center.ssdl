@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Center.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="CenterStoreContainer">
+    <EntitySet Name="EgitimlerSet" EntityType="Center.Store.EgitimlerSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EgitmenlerSet" EntityType="Center.Store.EgitmenlerSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SubelerSet" EntityType="Center.Store.SubelerSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OgrencilerSet" EntityType="Center.Store.OgrencilerSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KullanicilarSet" EntityType="Center.Store.KullanicilarSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="OgrencilerSubeler" Association="Center.Store.OgrencilerSubeler">
+      <End Role="Ogrenciler" EntitySet="OgrencilerSet" />
+      <End Role="Subeler" EntitySet="SubelerSet" />
+    </AssociationSet>
+    <AssociationSet Name="SubelerEgitimler" Association="Center.Store.SubelerEgitimler">
+      <End Role="Subeler" EntitySet="SubelerSet" />
+      <End Role="Egitimler" EntitySet="EgitimlerSet" />
+    </AssociationSet>
+    <AssociationSet Name="SubelerEgitmenler" Association="Center.Store.SubelerEgitmenler">
+      <End Role="Subeler" EntitySet="SubelerSet" />
+      <End Role="Egitmenler" EntitySet="EgitmenlerSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="EgitimlerSet">
+    <Key>
+      <PropertyRef Name="EgitimNo" />
+    </Key>
+    <Property Name="EgitimNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EgitimAdi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EgitimSaati" Type="int" Nullable="false" />
+    <Property Name="EgitimTuru" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EgitimUcreti" Type="decimal" Nullable="false" />
+    <Property Name="EgitimGunu" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SubeNo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EgitmenlerSet">
+    <Key>
+      <PropertyRef Name="EgitmenNo" />
+    </Key>
+    <Property Name="EgitmenNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EgitmenAdi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EgitmenSifre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EgitmenMail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EgitmenTelefon" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EgitmenAlani" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SubeNo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubelerSet">
+    <Key>
+      <PropertyRef Name="SubeNo" />
+    </Key>
+    <Property Name="SubeNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubeAdi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SubeAdresi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EgitmenSayisi" Type="int" Nullable="false" />
+    <Property Name="ProgramSayisi" Type="int" Nullable="false" />
+    <Property Name="OgrenciNo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OgrencilerSet">
+    <Key>
+      <PropertyRef Name="OgrenciNo" />
+    </Key>
+    <Property Name="OgrenciNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OgrenciAdSoyad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="OgrenciSifre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="OgrenciMail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="OgrenciTelefon" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KullanicilarSet">
+    <Key>
+      <PropertyRef Name="KullaniciNo" />
+    </Key>
+    <Property Name="KullaniciNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KullaniciAdi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="KullaniciSifre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="KullaniciMail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="KullaniciTelefon" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="OgrencilerSubeler">
+    <End Role="Ogrenciler" Type="Center.Store.OgrencilerSet" Multiplicity="1" />
+    <End Role="Subeler" Type="Center.Store.SubelerSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ogrenciler">
+        <PropertyRef Name="OgrenciNo" />
+      </Principal>
+      <Dependent Role="Subeler">
+        <PropertyRef Name="OgrenciNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SubelerEgitimler">
+    <End Role="Subeler" Type="Center.Store.SubelerSet" Multiplicity="1" />
+    <End Role="Egitimler" Type="Center.Store.EgitimlerSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subeler">
+        <PropertyRef Name="SubeNo" />
+      </Principal>
+      <Dependent Role="Egitimler">
+        <PropertyRef Name="SubeNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SubelerEgitmenler">
+    <End Role="Subeler" Type="Center.Store.SubelerSet" Multiplicity="1" />
+    <End Role="Egitmenler" Type="Center.Store.EgitmenlerSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subeler">
+        <PropertyRef Name="SubeNo" />
+      </Principal>
+      <Dependent Role="Egitmenler">
+        <PropertyRef Name="SubeNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="aece4881200b425f8d48bd4ff8d932aa" Name="Diagram1" >
+        <EntityTypeShape EntityType="Center.Egitimler" PointX="0.75" PointY="0.75" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Center.Egitmenler" PointX="4.75" PointY="4.25" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Center.Subeler" PointX="0.75" PointY="4.75" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Center.Ogrenciler" PointX="3.75" PointY="0.75" Width="1.5" IsExpanded="true" />
+        <AssociationConnector Association="Center.OgrencilerSubeler" />
+        <AssociationConnector Association="Center.SubelerEgitimler" />
+        <AssociationConnector Association="Center.SubelerEgitmenler" />
+        <EntityTypeShape EntityType="Center.Kullanicilar" PointX="5.75" PointY="0.75" Width="1.5" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
